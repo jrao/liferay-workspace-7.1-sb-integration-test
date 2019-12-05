@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<beans
+	default-destroy-method="destroy"
+	default-init-method="afterPropertiesSet"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+>
+	<bean class="com.liferay.sample.sb.service.impl.EmployeeLocalServiceImpl" id="com.liferay.sample.sb.service.EmployeeLocalService" />
+	<bean class="com.liferay.sample.sb.service.impl.EmployeeServiceImpl" id="com.liferay.sample.sb.service.EmployeeService" />
+	<bean class="com.liferay.sample.sb.service.persistence.impl.EmployeePersistenceImpl" id="com.liferay.sample.sb.service.persistence.EmployeePersistence" parent="basePersistence" />
+</beans>

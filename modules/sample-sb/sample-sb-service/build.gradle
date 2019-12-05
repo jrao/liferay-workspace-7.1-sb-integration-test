@@ -1,0 +1,47 @@
+dependencies {
+	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bnd.annotation", version: "3.5.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
+	compileOnly group: "org.osgi", name: "org.osgi.core"
+	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
+	compileOnly project(":modules:sample-sb:sample-sb-api")
+
+	testIntegrationCompile group: "com.liferay.arquillian", name: "com.liferay.arquillian.arquillian-container-liferay", version: "1.0.5"
+	testIntegrationCompile group: "junit", name: "junit", version: "4.12"
+	testIntegrationCompile group: "org.jboss.arquillian.junit", name: "arquillian-junit-container", version: "1.1.11.Final"
+	testIntegrationCompile project(":modules:sample-sb:sample-sb-api")
+}
+
+buildService {
+	apiDir = "../sample-sb-api/src/main/java"
+}
+
+group = "com.liferay.sample.sb"
+
+startTestableTomcat {
+	checkTimeout = 10 * 60 * 1000
+}
+
+testIntegration {
+	dependsOn jar
+
+	systemProperty 'jarFile', jar.archivePath
+}
+
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
+tasks.withType(Test) {
+	testLogging {
+		events TestLogEvent.FAILED,
+				TestLogEvent.PASSED,
+				TestLogEvent.SKIPPED,
+				TestLogEvent.STANDARD_ERROR,
+				TestLogEvent.STANDARD_OUT
+		exceptionFormat TestExceptionFormat.FULL
+		showCauses true
+		showExceptions true
+		showStackTraces true
+	}
+}
