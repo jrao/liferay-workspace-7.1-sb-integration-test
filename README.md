@@ -1,5 +1,11 @@
 # Liferay 7.1 Workspace Demonstrating How to Write Integration Tests for Service Builder Modules
 
+## Description
+
+This workspace is an adaptation of <https://github.com/gamerson/arquillian-workspace-example> (designed for 7.0) for 7.1. It also replaces the simple service and associated test with a Service Builder service and associated test.
+
+## Usage
+
 1. Unzip the `liferay-workspace-7.1-sb-integration-test.zip` file.
 
 2. In a terminal, go to the `liferay-workspace-7.1-sb-integration-test/` root dir and run `blade gw initBundle`.
